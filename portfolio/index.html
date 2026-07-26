@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saurabh Karki — Frontend Developer &amp; UI/UX Designer</title>
+<meta name="description" content="Saurabh Karki — Frontend Developer & UI/UX Designer. Portfolio designed as an interactive Figma-style workspace.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%230d99ff'/%3E%3Ctext x='12' y='17' font-size='13' font-family='Arial' font-weight='700' text-anchor='middle' fill='white'%3ESK%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script>document.documentElement.className += ' js';</script>
+</head>
+<body data-page="home">
+<a class="skip-link" href="#canvas">Skip to content</a>
+
+<div class="app">
+
+  <!-- ============ TOP BAR (Figma window chrome) ============ -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="icon-btn" id="menuToggle" aria-label="Toggle layers panel">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="3" stroke="currentColor" stroke-width="1.3"/><path d="M6 1v14" stroke="currentColor" stroke-width="1.3"/></svg>
+      </button>
+      <div class="logo-mark" aria-hidden="true">
+        <span class="dot dot-red"></span><span class="dot dot-purple"></span><span class="dot dot-blue"></span>
+      </div>
+      <div class="file-tab">
+        <span class="file-name">Saurabh Karki</span><span class="file-sep">—</span><span class="file-name-muted">Portfolio.fig</span>
+        <svg class="chevron" width="10" height="10" viewBox="0 0 10 10"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+      </div>
+    </div>
+
+    <div class="topbar-center">
+      <div class="tool-group">
+        <button class="tool-btn active" data-tool="move" title="Move (V)">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 1l5 12 1.5-4.7L15 7 4 1z" fill="currentColor"/></svg>
+        </button>
+        <button class="tool-btn" data-tool="frame" title="Frame (F)">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M5 1v14M11 1v14M1 5h14M1 11h14" stroke="currentColor" stroke-width="1.3"/></svg>
+        </button>
+        <button class="tool-btn" data-tool="pen" title="Pen (P)">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 14l1-4 8-8 3 3-8 8-4 1z" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+        </button>
+        <button class="tool-btn" data-tool="text" title="Text (T)">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 3h10M8 3v10" stroke="currentColor" stroke-width="1.3"/></svg>
+        </button>
+        <button class="tool-btn" data-tool="comment" title="Comment (C)">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 3h12v7H6l-3 3V10H2V3z" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="topbar-right">
+      <button class="icon-btn" id="rightToggle" aria-label="Toggle design panel">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="3" stroke="currentColor" stroke-width="1.3"/><path d="M10 1v14" stroke="currentColor" stroke-width="1.3"/></svg>
+      </button>
+      <div class="zoom-chip" id="topZoom">100%</div>
+      <a class="share-btn" href="assets/Saurabh_Karki_Resume.pdf" download>
+        <span>Resume</span> <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v7M3 5.5L6 8.5L9 5.5M2 10.5h8" stroke="currentColor" stroke-width="1.3" fill="none"/></svg>
+      </a>
+      <div class="avatar" title="Saurabh Karki">SK</div>
+    </div>
+  </header>
+
+  <!-- ============ BREADCRUMB BAR ============ -->
+  <div class="breadcrumb">
+    <span>Saurabh Karki</span>
+    <svg width="12" height="12" viewBox="0 0 12 12"><path d="M4.5 2.5L7.5 6L4.5 9.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+    <span class="active-crumb" id="activeCrumb">Page 1</span>
+    <span class="crumb-dim">·</span>
+    <span class="crumb-dim" id="activeCrumbSection">Hero</span>
+  </div>
+
+  <!-- ============ MAIN WORKSPACE ============ -->
+  <div class="workspace">
+
+    <!-- LEFT SIDEBAR — Layers panel doubles as site navigation -->
+    <aside class="sidebar sidebar-left" id="leftPanel">
+      <div class="panel-tabs">
+        <button class="panel-tab active">Layers</button>
+        <button class="panel-tab">Assets</button>
+        <svg class="search-icon" width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="6" cy="6" r="4.3" stroke="currentColor" stroke-width="1.2"/><path d="M9.3 9.3L13 13" stroke="currentColor" stroke-width="1.2"/></svg>
+      </div>
+      <div class="layers-tree" id="layersTree">
+        <div class="layer-row page-row">
+          <svg class="twist" width="10" height="10" viewBox="0 0 10 10"><path d="M3 2l4 3-4 3" fill="currentColor"/></svg>
+          <svg class="layer-icon page-icon" width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="1" width="10" height="12" rx="1" stroke="currentColor" stroke-width="1.1"/></svg>
+          <span class="layer-name">Page 1</span>
+        </div>
+        <nav class="layer-children" id="navLinks">
+          <!-- populated by JS from the frames present on the page -->
+        </nav>
+      </div>
+      <div class="panel-footer">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" stroke-width="1.1"/><path d="M6.5 4v3l2 1" stroke="currentColor" stroke-width="1.1"/></svg>
+        <span>Last edited Today</span>
+      </div>
+    </aside>
+
+    <!-- CENTER CANVAS -->
+    <main class="canvas-wrap">
+      <div class="ruler ruler-top" id="rulerTop"></div>
+      <div class="ruler ruler-left" id="rulerLeft"></div>
+
+      <div class="canvas" id="canvas" tabindex="-1">
+        <div class="canvas-inner" id="canvasInner">
+
+          <!-- ===== HERO / Frame ===== -->
+          <section class="frame" id="hero" data-layer="Hero" data-sub="2">
+            <div class="frame-label">Hero <span class="frame-dim">1440 × 860</span></div>
+            <div class="frame-body hero-body">
+              <div class="hero-aurora" aria-hidden="true"></div>
+              <div class="hero-grid-overlay" aria-hidden="true"></div>
+
+              <div class="hero-content">
+                <div class="eyebrow reveal">
+                  <span class="pulse-dot"></span> Available for new opportunities
+                </div>
+                <h1 class="hero-title reveal">Saurabh <span class="grad">Karki</span></h1>
+                <p class="hero-role reveal">Frontend Developer <span class="role-amp">&amp;</span> UI/UX Designer</p>
+                <div class="hero-rotator reveal" aria-hidden="true">
+                  <span class="rot-label">Currently</span>
+                  <span class="rot-viewport"><span class="rot-words" id="rotWords">
+                    <span class="rot-word">crafting hospitality websites</span>
+                    <span class="rot-word">designing in Figma</span>
+                    <span class="rot-word">building internal tools</span>
+                    <span class="rot-word">shipping accessible UI</span>
+                  </span></span>
+                </div>
+                <p class="hero-loc reveal">
+                  <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 12S11 8.2 11 5.1A4.5 4.5 0 106.5 12z" stroke="currentColor" stroke-width="1.1"/><circle cx="6.5" cy="5" r="1.6" stroke="currentColor" stroke-width="1.1"/></svg>
+                  Bengaluru, Karnataka, India
+                </p>
+                <p class="hero-summary reveal">3+ years designing &amp; building high-performance, accessible web experiences for premium hospitality &amp; travel brands — from Figma wireframes to pixel-perfect production front-end, plus internal tools that save teams hours every week.</p>
+                <div class="hero-cta reveal">
+                  <a href="#projects" class="btn btn-primary" data-nav>View Work
+                    <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 6.5h8M7 3l3.5 3.5L7 10" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>
+                  </a>
+                  <a href="#contact" class="btn btn-secondary" data-nav>Get in Touch</a>
+                  <a href="assets/Saurabh_Karki_Resume.pdf" class="btn btn-ghost" download>
+                    Download CV
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v7M3 5.5L6 8.5L9 5.5M2 10.5h8" stroke="currentColor" stroke-width="1.3" fill="none"/></svg>
+                  </a>
+                </div>
+              </div>
+
+              <!-- On-theme "component preview" with Figma-style measurement annotations -->
+              <div class="hero-visual reveal" aria-hidden="true">
+                <div class="spec-card float-anim">
+                  <div class="spec-card-head">
+                    <span class="spec-diamond"><svg width="11" height="11" viewBox="0 0 16 16"><path d="M8 1l6 6-6 6-6-6 6-6z" fill="currentColor"/></svg></span>
+                    Profile
+                    <span class="spec-badge">Component</span>
+                  </div>
+                  <div class="spec-avatar">SK</div>
+                  <div class="spec-name">Saurabh Karki</div>
+                  <div class="spec-sub">Developer × Designer</div>
+                  <div class="spec-tags">
+                    <span>Frontend</span><span>UI/UX</span><span>React</span><span>GSAP</span>
+                  </div>
+                  <span class="measure measure-w"><span class="m-line"></span><span class="m-val">288</span></span>
+                  <span class="measure measure-h"><span class="m-line"></span><span class="m-val">auto</span></span>
+                </div>
+                <span class="float-chip chip-fig">Figma</span>
+                <span class="float-chip chip-code">&lt;/&gt;</span>
+                <span class="float-chip chip-a11y">A11y</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- ===== ABOUT / Frame ===== -->
+          <section class="frame" id="about" data-layer="About" data-sub="4">
+            <div class="frame-label">About <span class="frame-dim">1440 × 380</span></div>
+            <div class="frame-body">
+              <span class="section-tag reveal">01 · Summary</span>
+              <h2 class="section-title reveal">Professional Summary</h2>
+              <p class="about-text reveal">Results-driven Frontend Developer &amp; UI/UX Designer with 3+ years of experience designing and building high-performance, responsive web applications and hospitality websites. Expertise across the full product surface — UI/UX design in Figma, HTML, CSS, JavaScript, React.js, GSAP, accessibility (ADA/WCAG), SEO, performance tuning, internal tooling, mentorship, and AI-assisted workflows.</p>
+              <div class="about-stats">
+                <div class="stat-card reveal"><span class="stat-num" data-count="3" data-suffix="+">3+</span><span class="stat-label">Years Experience</span></div>
+                <div class="stat-card reveal"><span class="stat-num" data-count="12" data-suffix="+">12+</span><span class="stat-label">Client Websites Shipped</span></div>
+                <div class="stat-card reveal"><span class="stat-num" data-count="5" data-suffix="">5</span><span class="stat-label">Developers Mentored</span></div>
+                <div class="stat-card reveal"><span class="stat-num" data-count="6" data-suffix="×">6×</span><span class="stat-label">Faster Popup Deployment</span></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ===== SKILLS / Frame ===== -->
+          <section class="frame" id="skills" data-layer="Skills" data-sub="5">
+            <div class="frame-label">Skills <span class="frame-dim">1440 × 520</span></div>
+            <div class="frame-body">
+              <span class="section-tag reveal">02 · Toolkit</span>
+              <h2 class="section-title reveal">Skills &amp; Tools</h2>
+              <div class="skills-grid" id="skillsGrid"></div>
+            </div>
+          </section>
+
+          <!-- ===== EXPERIENCE / Frame ===== -->
+          <section class="frame" id="experience" data-layer="Experience" data-sub="2">
+            <div class="frame-label">Experience <span class="frame-dim">1440 × 640</span></div>
+            <div class="frame-body">
+              <span class="section-tag reveal">03 · Career</span>
+              <h2 class="section-title reveal">Professional Experience</h2>
+              <div class="exp-card reveal">
+                <div class="exp-head">
+                  <div>
+                    <h3 class="exp-role">Web Developer <span class="exp-amp">&amp;</span> UI/UX Designer</h3>
+                    <div class="exp-company">Simplotel</div>
+                  </div>
+                  <span class="exp-date">2023 — Present</span>
+                </div>
+                <ul class="exp-list">
+                  <li><b>Designed &amp; developed</b> high-performance hospitality and travel websites for premium hotel, resort, and luxury residential brands — owning both the UI/UX design and the production front-end.</li>
+                  <li>Led design end-to-end: wireframes, UI, design systems and prototypes in <b>Figma</b>, refined visuals in <b>Photoshop</b> — every showcased client project was <b>designed by me</b>, then built responsive and mobile-first with HTML, CSS, JavaScript, React.js &amp; GSAP.</li>
+                  <li>Improved website performance through code optimization, lazy loading, and frontend architecture enhancements.</li>
+                  <li>Collaborated with QA engineers, project managers, and stakeholders to ship high-quality, accessible web experiences.</li>
+                  <li>Leveraged AI design &amp; dev tools — <b>Claude</b>, <b>Lovable</b>, ChatGPT, Cursor &amp; GitHub Copilot — for AI-assisted design, coding, debugging and documentation.</li>
+                </ul>
+                <div class="exp-tools">
+                  <span class="exp-tools-label">Design toolkit</span>
+                  <div class="chip-row">
+                    <span class="chip chip-tool">Figma</span>
+                    <span class="chip chip-tool">Adobe Photoshop</span>
+                    <span class="chip chip-tool">Claude (AI Design)</span>
+                    <span class="chip chip-tool">Lovable</span>
+                    <span class="chip chip-tool">AI-Assisted Design</span>
+                    <span class="chip chip-tool">Wireframing</span>
+                    <span class="chip chip-tool">Prototyping</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ===== HIGHLIGHTS / Frame ===== -->
+          <section class="frame" id="highlights" data-layer="Highlights" data-sub="6">
+            <div class="frame-label">Highlights <span class="frame-dim">1440 × 480</span></div>
+            <div class="frame-body">
+              <span class="section-tag reveal">04 · Impact</span>
+              <h2 class="section-title reveal">Key Contributions &amp; Leadership</h2>
+              <div class="highlight-grid" id="highlightGrid"></div>
+            </div>
+          </section>
+
+          <!-- ===== PROJECTS / Frame ===== -->
+          <section class="frame" id="projects" data-layer="Projects" data-sub="3">
+            <div class="frame-label">Projects <span class="frame-dim">1440 × 520</span></div>
+            <div class="frame-body">
+              <span class="section-tag reveal">05 · Selected Work</span>
+              <h2 class="section-title reveal">Featured Projects</h2>
+              <p class="section-sub reveal">Hospitality &amp; luxury brands I designed and built at Simplotel. All UI/UX designed by me in Figma, then shipped to production.</p>
+              <div class="project-grid featured-grid" id="featuredGrid"></div>
+              <div class="projects-more reveal">
+                <a class="btn btn-outline btn-lg" href="projects.html">
+                  View all projects
+                  <span class="more-count">12</span>
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7h8.5M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <!-- ===== CASE STUDIES / Frame ===== -->
+          <section class="frame" id="casestudies" data-layer="Case Studies" data-sub="3">
+            <div class="frame-label">Case Studies <span class="frame-dim">1440 × 520</span></div>
+            <div class="frame-body">
+              <span class="section-tag reveal">06 · Deep Dives</span>
+              <h2 class="section-title reveal">Case Studies</h2>
+              <p class="section-sub reveal">Detailed write-ups of problems I solved end-to-end. Full case studies coming soon — here's a preview of what's on the way.</p>
+              <div class="case-grid" id="caseGrid"></div>
+            </div>
+          </section>
+
+          <!-- ===== CONTACT / Frame ===== -->
+          <section class="frame frame-last" id="contact" data-layer="Contact" data-sub="4">
+            <div class="frame-label">Contact <span class="frame-dim">1440 × 420</span></div>
+            <div class="frame-body">
+              <span class="section-tag reveal">07 · Let's Connect</span>
+              <h2 class="section-title reveal">Get In Touch</h2>
+              <p class="section-sub reveal">Open to frontend, web development &amp; UI/UX design roles. Reach out through any of the channels below.</p>
+              <div class="contact-grid">
+                <a class="contact-card reveal" href="mailto:sskmas2058@gmail.com">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="1.5" y="3.5" width="15" height="11" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 4.5l7 5.5 7-5.5" stroke="currentColor" stroke-width="1.2"/></svg>
+                  <div><span class="contact-label">Email</span><span class="contact-value">sskmas2058@gmail.com</span></div>
+                </a>
+                <a class="contact-card reveal" href="tel:+918006601623">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 2h3l1.5 4-2 1.5a10 10 0 005 5l1.5-2 4 1.5v3c0 1-1 1.5-2 1.5C9.5 16.5 1.5 8.5 1.5 4c0-1 .5-2 1.5-2z" stroke="currentColor" stroke-width="1.1" fill="none"/></svg>
+                  <div><span class="contact-label">Phone</span><span class="contact-value">+91 8006601623</span></div>
+                </a>
+                <a class="contact-card reveal" href="https://www.linkedin.com/in/saurabh-karki-271838140/" target="_blank" rel="noopener">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="1.5" y="1.5" width="15" height="15" rx="2.5" stroke="currentColor" stroke-width="1.2"/><path d="M5.5 7.5v6M5.5 5.2v.1M9 13.5V9.8c0-1.3 1-2.3 2.2-2.3 1.2 0 1.8.9 1.8 2.3v3.7" stroke="currentColor" stroke-width="1.1"/></svg>
+                  <div><span class="contact-label">LinkedIn</span><span class="contact-value">saurabh-karki-271838140</span></div>
+                </a>
+                <a class="contact-card reveal" href="https://www.google.com/maps/place/Bengaluru,+Karnataka" target="_blank" rel="noopener">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 16.5S15 11 15 6.8A6 6 0 003 6.8C3 11 9 16.5 9 16.5z" stroke="currentColor" stroke-width="1.1"/><circle cx="9" cy="6.7" r="2.2" stroke="currentColor" stroke-width="1.1"/></svg>
+                  <div><span class="contact-label">Location</span><span class="contact-value">Bengaluru, India</span></div>
+                </a>
+              </div>
+              <div class="footer-strip">
+                <span>© <span id="year"></span> Saurabh Karki</span>
+                <span class="footer-dim">Designed as an interactive Figma workspace · Built with HTML, CSS &amp; JS</span>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+
+      <div class="zoom-controls">
+        <button id="zoomOut" aria-label="Zoom out">–</button>
+        <span id="zoomLevel">100%</span>
+        <button id="zoomIn" aria-label="Zoom in">+</button>
+        <button id="zoomReset" aria-label="Reset zoom">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="1" y="1" width="11" height="11" rx="1.5" stroke="currentColor" stroke-width="1.1"/></svg>
+        </button>
+      </div>
+    </main>
+
+    <!-- RIGHT SIDEBAR — Design / Properties panel -->
+    <aside class="sidebar sidebar-right" id="rightPanel">
+      <div class="panel-tabs">
+        <button class="panel-tab active">Design</button>
+        <button class="panel-tab">Prototype</button>
+      </div>
+      <div class="props-scroll" id="propsScroll">
+        <!-- populated dynamically by JS per-section -->
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- ============ BOTTOM STATUS BAR ============ -->
+  <footer class="statusbar">
+    <span class="status-left">Page 1 <span class="status-dim">/</span> <span id="statusLayer">Hero</span></span>
+    <span class="status-right">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1"/></svg>
+      Scroll or click a layer to navigate
+    </span>
+  </footer>
+
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>

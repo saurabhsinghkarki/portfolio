@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study — Booking Search Experience · Saurabh Karki</title>
+    <meta name="description"
+        content="A case study on redesigning the hotel booking search experience for Polo Hotels & Resorts — replacing a disappearing search form with a persistent, editable booking widget. By Saurabh Karki.">
+    <meta name="author" content="Saurabh Karki">
+    <meta property="og:title" content="Redesigning the Hotel Booking Search Experience — Saurabh Karki">
+    <meta property="og:description"
+        content="How a persistent booking widget removed friction from the hotel search-to-book journey at Polo Hotels & Resorts.">
+    <meta property="og:type" content="article">
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%230d99ff'/%3E%3Ctext x='12' y='17' font-size='13' font-family='Arial' font-weight='700' text-anchor='middle' fill='white'%3ESK%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script>document.documentElement.className += ' js';</script>
+</head>
+
+<body data-page="casestudy">
+    <a class="skip-link" href="#canvas">Skip to content</a>
+
+    <div class="app">
+
+        <!-- ============ TOP BAR ============ -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="icon-btn" id="menuToggle" aria-label="Toggle layers panel">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <rect x="1" y="1" width="14" height="14" rx="3" stroke="currentColor" stroke-width="1.3" />
+                        <path d="M6 1v14" stroke="currentColor" stroke-width="1.3" />
+                    </svg>
+                </button>
+                <a class="back-btn" href="index.html#casestudies" title="Back to portfolio">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M8.5 3L4.5 7l4 4M4.5 7H12" stroke="currentColor" stroke-width="1.4" fill="none" />
+                    </svg>
+                    <span>Back</span>
+                </a>
+                <div class="logo-mark" aria-hidden="true">
+                    <span class="dot dot-red"></span><span class="dot dot-purple"></span><span
+                        class="dot dot-blue"></span>
+                </div>
+                <div class="file-tab">
+                    <span class="file-name">Saurabh Karki</span><span class="file-sep">—</span><span
+                        class="file-name-muted">CaseStudy.fig</span>
+                    <svg class="chevron" width="10" height="10" viewBox="0 0 10 10">
+                        <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.2" fill="none" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="topbar-center">
+                <div class="tool-group">
+                    <button class="tool-btn active" data-tool="move" title="Move (V)">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M4 1l5 12 1.5-4.7L15 7 4 1z" fill="currentColor" />
+                        </svg>
+                    </button>
+                    <button class="tool-btn" data-tool="frame" title="Frame (F)">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M5 1v14M11 1v14M1 5h14M1 11h14" stroke="currentColor" stroke-width="1.3" />
+                        </svg>
+                    </button>
+                    <button class="tool-btn" data-tool="pen" title="Pen (P)">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M2 14l1-4 8-8 3 3-8 8-4 1z" stroke="currentColor" stroke-width="1.2" fill="none" />
+                        </svg>
+                    </button>
+                    <button class="tool-btn" data-tool="text" title="Text (T)">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M3 3h10M8 3v10" stroke="currentColor" stroke-width="1.3" />
+                        </svg>
+                    </button>
+                    <button class="tool-btn" data-tool="comment" title="Comment (C)">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M2 3h12v7H6l-3 3V10H2V3z" stroke="currentColor" stroke-width="1.2" fill="none" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="topbar-right">
+                <button class="icon-btn" id="rightToggle" aria-label="Toggle design panel">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <rect x="1" y="1" width="14" height="14" rx="3" stroke="currentColor" stroke-width="1.3" />
+                        <path d="M10 1v14" stroke="currentColor" stroke-width="1.3" />
+                    </svg>
+                </button>
+                <div class="zoom-chip" id="topZoom">100%</div>
+                <a class="share-btn" href="assets/Saurabh_Karki_Resume.pdf" download>
+                    <span>Resume</span> <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                        <path d="M6 1v7M3 5.5L6 8.5L9 5.5M2 10.5h8" stroke="currentColor" stroke-width="1.3"
+                            fill="none" />
+                    </svg>
+                </a>
+                <div class="avatar" title="Saurabh Karki">SK</div>
+            </div>
+        </header>
+
+        <!-- ============ BREADCRUMB BAR ============ -->
+        <div class="breadcrumb">
+            <a href="index.html" class="crumb-link">Saurabh Karki</a>
+            <svg width="12" height="12" viewBox="0 0 12 12">
+                <path d="M4.5 2.5L7.5 6L4.5 9.5" stroke="currentColor" stroke-width="1.2" fill="none" />
+            </svg>
+            <a href="index.html#casestudies" class="crumb-link">Case Studies</a>
+            <svg width="12" height="12" viewBox="0 0 12 12">
+                <path d="M4.5 2.5L7.5 6L4.5 9.5" stroke="currentColor" stroke-width="1.2" fill="none" />
+            </svg>
+            <span class="active-crumb" id="activeCrumb">Booking Search</span>
+            <span class="crumb-dim">·</span>
+            <span class="crumb-dim" id="activeCrumbSection">Overview</span>
+        </div>
+
+        <!-- ============ MAIN WORKSPACE ============ -->
+        <div class="workspace">
+
+            <!-- LEFT SIDEBAR -->
+            <aside class="sidebar sidebar-left" id="leftPanel">
+                <div class="panel-tabs">
+                    <button class="panel-tab active">Layers</button>
+                    <button class="panel-tab">Assets</button>
+                    <svg class="search-icon" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <circle cx="6" cy="6" r="4.3" stroke="currentColor" stroke-width="1.2" />
+                        <path d="M9.3 9.3L13 13" stroke="currentColor" stroke-width="1.2" />
+                    </svg>
+                </div>
+                <div class="layers-tree" id="layersTree">
+                    <div class="layer-row page-row">
+                        <svg class="twist" width="10" height="10" viewBox="0 0 10 10">
+                            <path d="M3 2l4 3-4 3" fill="currentColor" />
+                        </svg>
+                        <svg class="layer-icon page-icon" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <rect x="2" y="1" width="10" height="12" rx="1" stroke="currentColor" stroke-width="1.1" />
+                        </svg>
+                        <span class="layer-name">Case Study</span>
+                    </div>
+                    <nav class="layer-children" id="navLinks">
+                        <!-- populated by JS -->
+                    </nav>
+                </div>
+                <div class="panel-footer">
+                    <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                        <circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" stroke-width="1.1" />
+                        <path d="M6.5 4v3l2 1" stroke="currentColor" stroke-width="1.1" />
+                    </svg>
+                    <span>Polo Hotels &amp; Resorts</span>
+                </div>
+            </aside>
+
+            <!-- CENTER CANVAS -->
+            <main class="canvas-wrap">
+                <div class="ruler ruler-top" id="rulerTop"></div>
+                <div class="ruler ruler-left" id="rulerLeft"></div>
+
+                <div class="canvas" id="canvas" tabindex="-1">
+                    <div class="canvas-inner" id="canvasInner">
+
+                        <!-- ===== OVERVIEW / Hero ===== -->
+                        <section class="frame" id="cs-overview" data-layer="Overview" data-sub="7">
+                            <div class="frame-label">Overview <span class="frame-dim">1440 × 560</span></div>
+                            <div class="frame-body cs-hero-body">
+                                <div class="cs-hero-bg" aria-hidden="true">
+                                    <svg class="cs-hero-route" viewBox="0 0 1200 500" preserveAspectRatio="none">
+                                        <path d="M-50 400 C 250 300, 350 100, 650 150 S 1050 350, 1300 100" />
+                                    </svg>
+                                </div>
+                                <div class="cs-hero-content reveal">
+                                    <p class="eyebrow"><span class="pulse-dot"></span>Case Study — Product &amp;
+                                        Frontend Design</p>
+                                    <h1 class="cs-hero-title">Redesigning the Hotel<br>Booking <em>Search</em>
+                                        Experience</h1>
+                                    <p class="cs-hero-sub">Guests were losing their search the moment results loaded. I
+                                        designed and built a persistent booking widget so changing a date never means
+                                        starting over.</p>
+                                    <dl class="cs-hero-meta">
+                                        <div>
+                                            <dt>Company</dt>
+                                            <dd>simplotel</dd>
+                                        </div>
+                                        <div>
+                                            <dt>Role</dt>
+                                            <dd>Product Designer + Frontend Developer</dd>
+                                        </div>
+                                        <div>
+                                            <dt>Duration</dt>
+                                            <dd>2 Weeks</dd>
+                                        </div>
+                                        <div>
+                                            <dt>Platform</dt>
+                                            <dd>Responsive Web</dd>
+                                        </div>
+                                    </dl>
+                                    <div class="cs-hero-tools">
+                                        <span>Figma</span><span>FigJam</span><span>HTML</span><span>CSS</span><span>JavaScript</span>
+                                    </div>
+                                </div>
+                                <div class="cs-hero-demo reveal"
+                                    aria-label="Interactive prototype of the redesigned booking widget">
+                                    <p class="cs-demo-label">Try the widget I shipped ↓</p>
+                                    <div class="demo-widget" id="demoWidget">
+                                        <div class="demo-field">
+                                            <label for="demoDestination">Destination</label>
+                                            <select id="demoDestination">
+                                                <option>Goa, India</option>
+                                                <option>Udaipur, India</option>
+                                                <option>Bali, Indonesia</option>
+                                                <option>Maldives</option>
+                                            </select>
+                                        </div>
+                                        <div class="demo-field">
+                                            <label for="demoCheckin">Check-in</label>
+                                            <input type="date" id="demoCheckin" value="2026-08-14">
+                                        </div>
+                                        <div class="demo-field">
+                                            <label for="demoCheckout">Check-out</label>
+                                            <input type="date" id="demoCheckout" value="2026-08-17">
+                                        </div>
+                                        <div class="demo-field demo-stepper" id="guestField">
+                                            <label id="guestLabel">Guests &amp; Rooms</label>
+                                            <button type="button" class="stepper-summary" id="stepperToggle"
+                                                aria-haspopup="true" aria-expanded="false">2 guests · 1 room</button>
+                                            <div class="stepper-pop" id="stepperPop" hidden>
+                                                <div class="stepper-row">
+                                                    <span>Guests</span>
+                                                    <div class="stepper-controls">
+                                                        <button type="button" data-target="guests" data-dir="-1"
+                                                            aria-label="Decrease guests">−</button>
+                                                        <span id="guestCount">2</span>
+                                                        <button type="button" data-target="guests" data-dir="1"
+                                                            aria-label="Increase guests">+</button>
+                                                    </div>
+                                                </div>
+                                                <div class="stepper-row">
+                                                    <span>Rooms</span>
+                                                    <div class="stepper-controls">
+                                                        <button type="button" data-target="rooms" data-dir="-1"
+                                                            aria-label="Decrease rooms">−</button>
+                                                        <span id="roomCount">1</span>
+                                                        <button type="button" data-target="rooms" data-dir="1"
+                                                            aria-label="Increase rooms">+</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="demo-field">
+                                            <label for="demoPromo">Promo code</label>
+                                            <input type="text" id="demoPromo" placeholder="Optional">
+                                        </div>
+                                        <button type="button" class="demo-search-btn" id="demoSearchBtn">Update
+                                            search</button>
+                                    </div>
+                                    <p class="cs-demo-caption">This bar stays docked to the top of the results page —
+                                        every field is editable in place, no back button required.</p>
+                                    <div class="demo-toast" id="demoToast" role="status" aria-live="polite"></div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- ===== BACKGROUND ===== -->
+                        <section class="frame" id="cs-background" data-layer="Background" data-sub="2">
+                            <div class="frame-label">Background <span class="frame-dim">1440 × 320</span></div>
+                            <div class="frame-body">
+                                <span class="section-tag reveal">01 · Context</span>
+                                <h2 class="section-title reveal">A booking form that vanished the moment it mattered
+                                </h2>
+                                <p class="cs-lede reveal">Polo Hotels' booking engine lets guests search by destination,
+                                    check-in and check-out dates, guest count, room count and a promo code. Once they
+                                    hit <strong>Search</strong>, they land on the Hotel Listing Page — and the form
+                                    disappears entirely.</p>
+                                <p class="cs-body reveal">If a guest wanted to shift their trip by a day, add a room, or
+                                    try a promo code after seeing prices, the only path was back. Back to the homepage.
+                                    Re-enter every field. Search again. What should have been a two-second edit became a
+                                    five-step detour.</p>
+                            </div>
+                        </section>
+
+                        <!-- ===== RESEARCH ===== -->
+                        <section class="frame" id="cs-research" data-layer="Research" data-sub="3">
+                            <div class="frame-label">Research <span class="frame-dim">1440 × 540</span></div>
+                            <div class="frame-body">
+                                <span class="section-tag reveal">02 · Research</span>
+                                <h2 class="section-title reveal">What the booking-engine leaders already knew</h2>
+                                <p class="cs-lede reveal">I audited five booking platforms guests already trust,
+                                    watching specifically for what happens to the search form <em>after</em> results
+                                    load.</p>
+
+                                <div class="cs-table-wrap reveal">
+                                    <table class="cs-comp-table">
+                                        <caption class="sr-only">Competitive analysis of persistent search behaviour
+                                            across five booking platforms</caption>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Platform</th>
+                                                <th scope="col">Persistent search bar</th>
+                                                <th scope="col">Inline date editing</th>
+                                                <th scope="col">Visible guest/room control</th>
+                                                <th scope="col">Promo mid-search</th>
+                                                <th scope="col">Mobile behaviour</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="cs-comp-name">Booking.com</td>
+                                                <td><span class="cs-dot cs-dot-yes"></span>Docked on scroll</td>
+                                                <td><span class="cs-dot cs-dot-yes"></span>Calendar pop-in</td>
+                                                <td><span class="cs-dot cs-dot-yes"></span>Always visible</td>
+                                                <td><span class="cs-dot cs-dot-partial"></span>Buried in filters</td>
+                                                <td>Collapses to summary chip</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="cs-comp-name">Airbnb</td>
+                                                <td><span class="cs-dot cs-dot-yes"></span>Pill bar, sticky</td>
+                                                <td><span class="cs-dot cs-dot-yes"></span>Full calendar overlay</td>
+                                                <td><span class="cs-dot cs-dot-yes"></span>Always visible</td>
+                                                <td><span class="cs-dot cs-dot-no"></span>Not supported</td>
+                                                <td>Full-screen edit sheet</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="cs-comp-name">Expedia</td>
+                                                <td><span class="cs-dot cs-dot-yes"></span>Docked on scroll</td>
+                                                <td><span class="cs-dot cs-dot-yes"></span>Calendar pop-in</td>
+                                                <td><span class="cs-dot cs-dot-partial"></span>Needs a click</td>
+                                                <td><span class="cs-dot cs-dot-yes"></span>Inline field</td>
+                                                <td>Collapses to summary chip</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="cs-comp-name">Hilton</td>
+                                                <td><span class="cs-dot cs-dot-partial"></span>Only on re-scroll up</td>
+                                                <td><span class="cs-dot cs-dot-partial"></span>Reloads the page</td>
+                                                <td><span class="cs-dot cs-dot-yes"></span>Always visible</td>
+                                                <td><span class="cs-dot cs-dot-yes"></span>Inline field</td>
+                                                <td>Static bar, no dock</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="cs-comp-name">Marriott</td>
+                                                <td><span class="cs-dot cs-dot-partial"></span>Only on re-scroll up</td>
+                                                <td><span class="cs-dot cs-dot-yes"></span>Calendar pop-in</td>
+                                                <td><span class="cs-dot cs-dot-yes"></span>Always visible</td>
+                                                <td><span class="cs-dot cs-dot-partial"></span>Buried in filters</td>
+                                                <td>Static bar, no dock</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="cs-research-notes">
+                                    <div class="cs-research-note reveal">
+                                        <h3>Persistent search is table stakes</h3>
+                                        <p>Four of five platforms keep some form of the search bar reachable at all
+                                            times. Polo's disappearing form was the outlier, not the norm.</p>
+                                    </div>
+                                    <div class="cs-research-note reveal">
+                                        <h3>Editing dates shouldn't reload the world</h3>
+                                        <p>The strongest experiences (Booking.com, Airbnb, Expedia) update results in
+                                            place. Hilton's full reload was the closest analogue to Polo's
+                                            break-and-restart pattern.</p>
+                                    </div>
+                                    <div class="cs-research-note reveal">
+                                        <h3>Mobile needs its own shape</h3>
+                                        <p>Nobody shrinks the desktop bar onto mobile untouched — it collapses into a
+                                            single tappable summary, expanding into a focused editor only on demand.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- ===== PERSONA ===== -->
+                        <section class="frame" id="cs-persona" data-layer="Persona" data-sub="2">
+                            <div class="frame-label">Persona <span class="frame-dim">1440 × 380</span></div>
+                            <div class="frame-body">
+                                <span class="section-tag reveal">03 · User Persona</span>
+                                <h2 class="section-title reveal">Designing for the guest doing the comparing</h2>
+                                <div class="cs-persona-card reveal">
+                                    <div class="cs-persona-photo" aria-hidden="true">
+                                        <svg viewBox="0 0 120 120" width="100%" height="100%">
+                                            <circle cx="60" cy="60" r="60" fill="#f2f3f4" />
+                                            <circle cx="60" cy="48" r="22" fill="#0d99ff" opacity="0.85" />
+                                            <path d="M18 108c6-28 30-40 42-40s36 12 42 40" fill="#0d99ff"
+                                                opacity="0.55" />
+                                        </svg>
+                                    </div>
+                                    <div class="cs-persona-body">
+                                        <div class="cs-persona-head">
+                                            <h3>Meera Anand</h3>
+                                            <span class="cs-persona-tag">34 · Marketing Director · Bengaluru</span>
+                                        </div>
+                                        <p class="cs-persona-quote">"I usually have four tabs open comparing the same
+                                            weekend. If I have to restart a search because I moved a date by one day,
+                                            I've probably already left for a competitor's tab."</p>
+                                        <div class="cs-persona-details">
+                                            <div>
+                                                <h4>Behaviour</h4>
+                                                <ul>
+                                                    <li>Books 8–10 stays a year, mixing work trips and family holidays
+                                                    </li>
+                                                    <li>Compares 3–4 properties before committing</li>
+                                                    <li>Books primarily on mobile during commute or lunch breaks</li>
+                                                </ul>
+                                            </div>
+                                            <div>
+                                                <h4>Goals</h4>
+                                                <ul>
+                                                    <li>Adjust dates and room count without losing her place</li>
+                                                    <li>Apply a promo code after she's already seen prices</li>
+                                                    <li>Get to payment in as few screens as possible</li>
+                                                </ul>
+                                            </div>
+                                            <div>
+                                                <h4>Frustrations</h4>
+                                                <ul>
+                                                    <li>Re-entering the same search twice in one session</li>
+                                                    <li>Losing scroll position after navigating back</li>
+                                                    <li>Forms that behave differently on mobile than desktop</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- ===== JOURNEY ===== -->
+                        <section class="frame" id="cs-journey" data-layer="Journey" data-sub="7">
+                            <div class="frame-label">Journey <span class="frame-dim">1440 × 340</span></div>
+                            <div class="frame-body">
+                                <span class="section-tag reveal">04 · User Journey</span>
+                                <h2 class="section-title reveal">From discovery to payment</h2>
+                                <p class="cs-lede reveal">Mapping the full journey showed exactly where the friction sat
+                                    — not at the start, and not at the end, but in the middle, every time intent
+                                    changed.</p>
+                                <ol class="cs-journey-rail reveal">
+                                    <li><span class="cs-journey-index">01</span>
+                                        <h3>Discovery</h3>
+                                        <p>Guest lands via search, social or a returning-visitor bookmark.</p>
+                                    </li>
+                                    <li><span class="cs-journey-index">02</span>
+                                        <h3>Search</h3>
+                                        <p>Enters destination, dates, guests, rooms and an optional promo.</p>
+                                    </li>
+                                    <li><span class="cs-journey-index">03</span>
+                                        <h3>Hotel Listing</h3>
+                                        <p>Scans results, filters by price and rating.</p>
+                                    </li>
+                                    <li><span class="cs-journey-index">04</span>
+                                        <h3>Compare</h3>
+                                        <p>Opens two or three properties across tabs to weigh options.</p>
+                                    </li>
+                                    <li class="cs-journey-highlight"><span class="cs-journey-index">05</span>
+                                        <h3>Modify Dates</h3>
+                                        <p>Realises the trip should shift — this is the moment that used to break.</p>
+                                    </li>
+                                    <li><span class="cs-journey-index">06</span>
+                                        <h3>Booking</h3>
+                                        <p>Selects a room and confirms guest details.</p>
+                                    </li>
+                                    <li><span class="cs-journey-index">07</span>
+                                        <h3>Payment</h3>
+                                        <p>Completes payment and receives confirmation.</p>
+                                    </li>
+                                </ol>
+                            </div>
+                        </section>
+
+                        <!-- ===== SOLUTION ===== -->
+                        <section class="frame" id="cs-solution" data-layer="Solution" data-sub="2">
+                            <div class="frame-label">Solution <span class="frame-dim">1440 × 440</span></div>
+                            <div class="frame-body">
+                                <span class="section-tag reveal">05 · The Solution</span>
+                                <h2 class="section-title reveal">A booking widget that never leaves the page</h2>
+                                <p class="cs-lede reveal">I designed a sticky booking widget docked to the top of the
+                                    Hotel Listing Page. Destination, check-in, check-out, guests, rooms and promo code
+                                    are all editable in place — updating results instantly instead of sending the guest
+                                    back to start over.</p>
+                                <div class="cs-flow-compare reveal">
+                                    <div class="cs-flow-card cs-flow-before">
+                                        <h3>Before</h3>
+                                        <ol class="cs-flow-steps">
+                                            <li>Homepage</li>
+                                            <li>Search</li>
+                                            <li>Results</li>
+                                            <li class="cs-flow-break">Need to change date</li>
+                                            <li>Back</li>
+                                            <li>Homepage</li>
+                                            <li>Search again</li>
+                                        </ol>
+                                        <p class="cs-flow-tally">7 steps to change one field</p>
+                                    </div>
+                                    <div class="cs-flow-arrow" aria-hidden="true">→</div>
+                                    <div class="cs-flow-card cs-flow-after">
+                                        <h3>After</h3>
+                                        <ol class="cs-flow-steps">
+                                            <li>Homepage</li>
+                                            <li>Search</li>
+                                            <li>Results</li>
+                                            <li class="cs-flow-highlight">Sticky booking widget</li>
+                                            <li>Update dates</li>
+                                            <li>Instant refresh</li>
+                                        </ol>
+                                        <p class="cs-flow-tally">2 steps to change one field</p>
+                                    </div>
+                                </div>
+                                <div class="cs-solution-reasoning reveal">
+                                    <h3>Why a docked widget, not a modal</h3>
+                                    <p>A modal would still interrupt — it demands full attention and blocks the results
+                                        underneath. Docking the widget to the top keeps the listing visible at all
+                                        times, so a date change feels like a refinement of what's already on screen, not
+                                        a departure from it.</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- ===== DESIGN DECISIONS ===== -->
+                        <section class="frame" id="cs-decisions" data-layer="Design Decisions" data-sub="7">
+                            <div class="frame-label">Design Decisions <span class="frame-dim">1440 × 460</span></div>
+                            <div class="frame-body">
+                                <span class="section-tag reveal">06 · Design Decisions</span>
+                                <h2 class="section-title reveal">Every choice, and the reasoning behind it</h2>
+                                <div class="cs-decision-grid">
+                                    <div class="cs-decision-card reveal"><span class="cs-decision-num">01</span>
+                                        <h3>Persistent search</h3>
+                                        <p>The widget is docked, not dismissible — search stays exactly as reachable as
+                                            the results it's filtering.</p>
+                                    </div>
+                                    <div class="cs-decision-card reveal"><span class="cs-decision-num">02</span>
+                                        <h3>Reduced cognitive load</h3>
+                                        <p>Collapsed by default to a single readable summary line, so the guest reads
+                                            results first, form second.</p>
+                                    </div>
+                                    <div class="cs-decision-card reveal"><span class="cs-decision-num">03</span>
+                                        <h3>Maintain context</h3>
+                                        <p>Editing never navigates away — the results grid updates beneath the widget,
+                                            preserving scroll and selection.</p>
+                                    </div>
+                                    <div class="cs-decision-card reveal"><span class="cs-decision-num">04</span>
+                                        <h3>Responsive layout</h3>
+                                        <p>Desktop shows all fields in a row; mobile collapses to a tappable summary
+                                            chip that opens a focused sheet.</p>
+                                    </div>
+                                    <div class="cs-decision-card reveal"><span class="cs-decision-num">05</span>
+                                        <h3>Accessibility</h3>
+                                        <p>Every field is a native, labelled control — reachable and operable with a
+                                            keyboard alone, with visible focus.</p>
+                                    </div>
+                                    <div class="cs-decision-card reveal"><span class="cs-decision-num">06</span>
+                                        <h3>Fast refinement</h3>
+                                        <p>Changes apply the moment a field is confirmed — no separate "search again"
+                                            step required.</p>
+                                    </div>
+                                    <div class="cs-decision-card reveal"><span class="cs-decision-num">07</span>
+                                        <h3>Progressive disclosure</h3>
+                                        <p>Guests &amp; rooms and promo code sit one tap deeper, so rarely-touched
+                                            fields don't compete for attention.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- ===== WIREFRAMES ===== -->
+                        <section class="frame" id="cs-wireframes" data-layer="Wireframes" data-sub="3">
+                            <div class="frame-label">Wireframes <span class="frame-dim">1440 × 420</span></div>
+                            <div class="frame-body">
+                                <span class="section-tag reveal">07 · Wireframes</span>
+                                <h2 class="section-title reveal">From FigJam sketch to structured layout</h2>
+                                <p class="cs-lede reveal">Early low-fidelity passes focused on where the widget could
+                                    dock without competing with the results grid, and how far it should collapse on
+                                    mobile.</p>
+                                <div class="cs-wire-grid">
+                                    <div class="cs-wire-card reveal">
+                                        <div class="cs-wire-frame">
+                                            <div class="cs-wire-row cs-wire-nav"><span>1</span></div>
+                                            <div class="cs-wire-row cs-wire-widget"><span>2</span></div>
+                                            <div class="cs-wire-cards"><span class="cs-wire-block"></span><span
+                                                    class="cs-wire-block"></span><span
+                                                    class="cs-wire-block"><span>3</span></span><span
+                                                    class="cs-wire-block"></span></div>
+                                        </div>
+                                        <p class="cs-wire-caption"><strong>Desktop —</strong> widget docks beneath the
+                                            nav; result cards reflow directly under it.</p>
+                                    </div>
+                                    <div class="cs-wire-card reveal">
+                                        <div class="cs-wire-frame cs-wire-frame-tablet">
+                                            <div class="cs-wire-row cs-wire-nav"><span>1</span></div>
+                                            <div class="cs-wire-row cs-wire-widget cs-wire-widget-compact">
+                                                <span>2</span>
+                                            </div>
+                                            <div class="cs-wire-cards cs-wire-2col"><span
+                                                    class="cs-wire-block"></span><span
+                                                    class="cs-wire-block"><span>3</span></span></div>
+                                        </div>
+                                        <p class="cs-wire-caption"><strong>Tablet —</strong> fields wrap to two rows;
+                                            the promo field moves under progressive disclosure.</p>
+                                    </div>
+                                    <div class="cs-wire-card reveal">
+                                        <div class="cs-wire-frame cs-wire-frame-mobile">
+                                            <div class="cs-wire-row cs-wire-nav"><span>1</span></div>
+                                            <div class="cs-wire-row cs-wire-chip"><span>4</span></div>
+                                            <div class="cs-wire-cards cs-wire-1col"><span
+                                                    class="cs-wire-block"><span>5</span></span><span
+                                                    class="cs-wire-block"></span></div>
+                                        </div>
+                                        <p class="cs-wire-caption"><strong>Mobile —</strong> widget collapses to a
+                                            single summary chip; tapping opens a full editor sheet.</p>
+                                    </div>
+                                </div>
+                                <ul class="cs-wire-legend reveal">
+                                    <li><strong>1</strong> Global navigation</li>
+                                    <li><strong>2</strong> Expanded widget, all fields inline</li>
+                                    <li><strong>3</strong> Card grid begins immediately below the fold line</li>
+                                    <li><strong>4</strong> Collapsed summary chip</li>
+                                    <li><strong>5</strong> Editor sheet, opened on tap</li>
+                                </ul>
+                            </div>
+                        </section>
+
+                        <!-- ===== BEFORE / AFTER ===== -->
+                        <section class="frame" id="cs-comparison" data-layer="Before / After" data-sub="2">
+                            <div class="frame-label">Before / After <span class="frame-dim">1440 × 320</span></div>
+                            <div class="frame-body">
+                                <span class="section-tag reveal">08 · Before / After</span>
+                                <h2 class="section-title reveal">What changed, side by side</h2>
+                                <div class="cs-compare-grid">
+                                    <div class="cs-compare-card cs-compare-before reveal">
+                                        <h3>Before</h3>
+                                        <ul>
+                                            <li><span>Navigation</span><strong>Full page reload to homepage</strong>
+                                            </li>
+                                            <li><span>Clicks to edit one field</span><strong>7+</strong></li>
+                                            <li><span>Context</span><strong>Lost on every back navigation</strong></li>
+                                            <li><span>Booking flow</span><strong>Linear, no re-entry point</strong></li>
+                                            <li><span>Efficiency</span><strong>Slow, repetitive</strong></li>
+                                        </ul>
+                                    </div>
+                                    <div class="cs-compare-card cs-compare-after reveal">
+                                        <h3>After</h3>
+                                        <ul>
+                                            <li><span>Navigation</span><strong>Zero page reloads</strong></li>
+                                            <li><span>Clicks to edit one field</span><strong>2</strong></li>
+                                            <li><span>Context</span><strong>Preserved throughout</strong></li>
+                                            <li><span>Booking flow</span><strong>Editable at any point</strong></li>
+                                            <li><span>Efficiency</span><strong>Instant, in place</strong></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- ===== IMPACT ===== -->
+                        <section class="frame" id="cs-metrics" data-layer="Impact" data-sub="4">
+                            <div class="frame-label">Impact <span class="frame-dim">1440 × 360</span></div>
+                            <div class="frame-body">
+                                <span class="section-tag reveal">09 · Expected Impact</span>
+                                <h2 class="section-title reveal">What we set out to move</h2>
+                                <p class="cs-lede reveal">Live analytics weren't available at the time of writing —
+                                    these are the KPIs the redesign was built to influence, based on the friction
+                                    removed from the flow.</p>
+                                <div class="cs-metrics-grid">
+                                    <div class="cs-metric-card reveal">
+                                        <span class="cs-metric-num" data-count="70">0</span><span
+                                            class="cs-metric-suffix">%</span>
+                                        <p>fewer clicks to change one search field</p>
+                                    </div>
+                                    <div class="cs-metric-card reveal">
+                                        <span class="cs-metric-num" data-count="100">0</span><span
+                                            class="cs-metric-suffix">%</span>
+                                        <p>reduction in back-navigation to the homepage</p>
+                                    </div>
+                                    <div class="cs-metric-card reveal">
+                                        <span class="cs-metric-num" data-count="2">0</span><span
+                                            class="cs-metric-suffix">×</span>
+                                        <p>faster refinement from first search to updated results</p>
+                                    </div>
+                                    <div class="cs-metric-card reveal">
+                                        <span class="cs-metric-num">↑</span><span class="cs-metric-suffix"></span>
+                                        <p>expected uplift in booking completion rate</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- ===== LEARNINGS ===== -->
+                        <section class="frame frame-last" id="cs-learnings" data-layer="Learnings" data-sub="3">
+                            <div class="frame-label">Learnings <span class="frame-dim">1440 × 360</span></div>
+                            <div class="frame-body">
+                                <span class="section-tag reveal">10 · Key Learnings</span>
+                                <h2 class="section-title reveal">What this project reinforced</h2>
+                                <div class="cs-learnings-body reveal">
+                                    <p>This project was a reminder that product thinking often means removing a step,
+                                        not adding a feature. Nothing about the sticky widget was novel — every
+                                        competitor in the research already had some version of it. The work was in
+                                        fitting it to Polo's existing information architecture without disrupting the
+                                        booking team's roadmap for the quarter.</p>
+                                    <p>Designing for a high-intent user like Meera meant optimising for speed over
+                                        guidance — she already knows what she wants; the interface's job is to stay out
+                                        of her way. Balancing that against the business goal of surfacing promo codes
+                                        and upsells meant keeping those fields present but never blocking the primary
+                                        task of finding a room.</p>
+                                    <p>Building the front end myself changed how I designed the widget's states. Knowing
+                                        exactly how an <code>input[type="date"]</code> behaves across browsers, or how a
+                                        stepper control needs to announce its value to a screen reader, shaped decisions
+                                        earlier than a handoff-only process would have allowed.</p>
+                                    <div class="cs-footer-strip">
+                                        <span>© <span id="year"></span> Saurabh Karki</span>
+                                        <a href="index.html#casestudies" class="btn btn-ghost">← Back to Case
+                                            Studies</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>
+                </div>
+
+                <div class="zoom-controls">
+                    <button id="zoomOut" aria-label="Zoom out">–</button>
+                    <span id="zoomLevel">100%</span>
+                    <button id="zoomIn" aria-label="Zoom in">+</button>
+                    <button id="zoomReset" aria-label="Reset zoom">
+                        <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                            <rect x="1" y="1" width="11" height="11" rx="1.5" stroke="currentColor"
+                                stroke-width="1.1" />
+                        </svg>
+                    </button>
+                </div>
+            </main>
+
+            <!-- RIGHT SIDEBAR -->
+            <aside class="sidebar sidebar-right" id="rightPanel">
+                <div class="panel-tabs">
+                    <button class="panel-tab active">Design</button>
+                    <button class="panel-tab">Prototype</button>
+                </div>
+                <div class="props-scroll" id="propsScroll">
+                    <!-- populated dynamically by JS -->
+                </div>
+            </aside>
+
+        </div>
+
+        <!-- ============ BOTTOM STATUS BAR ============ -->
+        <footer class="statusbar">
+            <span class="status-left">Case Study <span class="status-dim">/</span> <span
+                    id="statusLayer">Overview</span></span>
+            <span class="status-right">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1" />
+                </svg>
+                Scroll or click a layer to navigate
+            </span>
+        </footer>
+
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
