@@ -49,6 +49,7 @@
 html,
 body {
   height: 100%;
+  overscroll-behavior: none;
 }
 
 body {
@@ -82,7 +83,12 @@ svg {
 }
 
 .app {
+  /* iOS Safari treats 100vh as the *large* viewport (toolbar hidden), so .app ends up
+     taller than the visible area. Combined with body{overflow:hidden} a programmatic
+     scroll can shift the topbar off-screen with no way to scroll back. 100dvh tracks
+     the actually-visible viewport, so the chrome can never leave the screen. */
   height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
 }
@@ -189,6 +195,10 @@ body.iframe-hover .cursor-dot {
 .topbar {
   height: var(--topbar-h);
   flex: 0 0 auto;
+  /* Above .scrim (z-index 20) — otherwise the scrim covers the panel toggles and
+     the open panel cannot be dismissed from the button that opened it. */
+  position: relative;
+  z-index: 30;
   background: var(--bg-darkest);
   border-bottom: 1px solid var(--border-dim);
   display: flex;
@@ -2348,6 +2358,8 @@ body.iframe-hover .cursor-dot {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, .4);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
   z-index: 20;
   opacity: 0;
   pointer-events: none;
@@ -2460,6 +2472,10 @@ body.iframe-hover .cursor-dot {
 @media (max-width: 640px) {
   :root {
     --topbar-h: 48px;
+    /* .breadcrumb is display:none below this width. The variable has to go to 0 as
+       well, or the fixed sidebars keep reserving its height and hang 28px below the
+       topbar with a strip of canvas showing through. */
+    --breadcrumb-h: 0px;
   }
 
   .breadcrumb {

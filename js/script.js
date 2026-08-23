@@ -450,12 +450,42 @@
     frameEls.forEach(function (f) { io.observe(f); });
   }
 
+  /* iOS Safari: scrollIntoView() scrolls every scrollable ancestor including the
+     document. Because body is overflow:hidden and .app used to exceed the visible
+     viewport, that left the page shifted with the topbar (and its panel toggles)
+     stranded off-screen and no way to scroll back. Scroll the #canvas container
+     directly instead, so the document scroll offset is never involved. */
+  function scrollFrameIntoCanvas(target, smooth) {
+    if (!target) return;
+    if (!canvas || !canvas.contains(target)) {
+      target.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' });
+    } else {
+      const dest = canvas.scrollTop +
+        (target.getBoundingClientRect().top - canvas.getBoundingClientRect().top) - 12;
+      if (typeof canvas.scrollTo === 'function') {
+        canvas.scrollTo({ top: dest, behavior: smooth ? 'smooth' : 'auto' });
+      } else {
+        canvas.scrollTop = dest;
+      }
+    }
+    resetDocScroll();
+  }
+
+  // Belt-and-braces: if anything did shift the document, pin it back to the origin.
+  function resetDocScroll() {
+    if (window.pageYOffset || window.pageXOffset) window.scrollTo(0, 0);
+    const de = document.documentElement;
+    if (de.scrollTop) de.scrollTop = 0;
+    if (de.scrollLeft) de.scrollLeft = 0;
+    if (document.body.scrollTop) document.body.scrollTop = 0;
+    if (document.body.scrollLeft) document.body.scrollLeft = 0;
+  }
+
   navLinkEls.forEach(function (link) {
     link.addEventListener('click', function (e) {
       e.preventDefault();
-      const target = document.getElementById(link.getAttribute('data-target'));
-      if (target) target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
       closeMobilePanels();
+      scrollFrameIntoCanvas(document.getElementById(link.getAttribute('data-target')), !reduceMotion);
     });
   });
 
@@ -524,23 +554,50 @@
   scrim.className = 'scrim';
   document.body.appendChild(scrim);
 
+  const menuToggle = $('menuToggle'), rightToggle = $('rightToggle');
+
+  function syncExpanded() {
+    if (menuToggle) menuToggle.setAttribute('aria-expanded',
+      leftPanel && leftPanel.classList.contains('open') ? 'true' : 'false');
+    if (rightToggle) rightToggle.setAttribute('aria-expanded',
+      rightPanel && rightPanel.classList.contains('open') ? 'true' : 'false');
+  }
+
   function closeMobilePanels() {
     if (leftPanel) leftPanel.classList.remove('open');
     if (rightPanel) rightPanel.classList.remove('open');
     scrim.classList.remove('show');
+    syncExpanded();
   }
-  const menuToggle = $('menuToggle'), rightToggle = $('rightToggle');
-  if (menuToggle) menuToggle.addEventListener('click', function () {
-    const willOpen = !leftPanel.classList.contains('open');
+
+  function togglePanel(panel) {
+    if (!panel) return;
+    const willOpen = !panel.classList.contains('open');
     closeMobilePanels();
-    if (willOpen) { leftPanel.classList.add('open'); scrim.classList.add('show'); }
-  });
-  if (rightToggle) rightToggle.addEventListener('click', function () {
-    const willOpen = !rightPanel.classList.contains('open');
-    closeMobilePanels();
-    if (willOpen) { rightPanel.classList.add('open'); scrim.classList.add('show'); }
-  });
+    if (willOpen) { panel.classList.add('open'); scrim.classList.add('show'); }
+    syncExpanded();
+  }
+
+  if (menuToggle) menuToggle.addEventListener('click', function () { togglePanel(leftPanel); });
+  if (rightToggle) rightToggle.addEventListener('click', function () { togglePanel(rightPanel); });
+
+  /* iOS Safari does not reliably dispatch `click` on a bare <div>, which left the
+     scrim un-tappable on iPhone. pointerdown/touchstart cover it; closeMobilePanels
+     is idempotent so firing more than once is harmless. */
   scrim.addEventListener('click', closeMobilePanels);
+  scrim.addEventListener('pointerdown', closeMobilePanels);
+  scrim.addEventListener('touchstart', closeMobilePanels, { passive: true });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' || e.key === 'Esc') closeMobilePanels();
+  });
+
+  // The panels are an overlay only below the breakpoint; never leave them stuck open.
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 1320) closeMobilePanels();
+  });
+
+  syncExpanded();
 
   /* ============================================================
      SCROLL-REVEAL + STAT COUNT-UP
@@ -800,8 +857,9 @@
   const yearEl = $('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  resetDocScroll();
   if (location.hash) {
     const target = document.getElementById(location.hash.slice(1));
-    if (target) setTimeout(function () { target.scrollIntoView({ block: 'start', behavior: 'auto' }); }, 40);
+    if (target) setTimeout(function () { scrollFrameIntoCanvas(target, false); }, 40);
   }
 })();
