@@ -18,23 +18,27 @@
     },
     {
       name: 'Practices & Architecture', color: '#14ae5c',
-      skills: ['Responsive Web Design', 'Cross-Browser Compatibility', 'Accessibility (ADA/WCAG)', 'SEO Optimization', 'Performance Optimization', 'Lazy Loading', 'Component-Based Development', 'Frontend Architecture']
+      skills: ['Responsive Web Design', 'Cross-Browser Compatibility', 'Accessibility (ADA/WCAG)', 'ADA/WCAG Testing & Remediation', 'SEO Optimization', 'Performance Optimization', 'PageSpeed & Core Web Vitals', 'Lazy Loading', 'Component-Based Development', 'Frontend Architecture']
     },
     {
       name: 'Tools', color: '#ff8a00',
       skills: ['Git', 'GitHub', 'Chrome DevTools', 'Postman', 'npm']
     },
     {
-      name: 'AI-Assisted Development & Mentorship', color: '#ff5b8a',
-      skills: ['Claude', 'Lovable', 'ChatGPT', 'Cursor AI', 'GitHub Copilot', 'Prompt Engineering', 'Technical Mentorship']
+      name: 'AI Engineering & Mentorship', color: '#ff5b8a',
+      skills: ['Prompt Engineering', 'AI Skill Development', 'AI Workflow Automation', 'Claude', 'Claude Code', 'Lovable', 'ChatGPT', 'Cursor AI', 'GitHub Copilot', 'Technical Mentorship']
     }
   ];
 
   const HIGHLIGHTS = [
+    { icon: 'sparkle', html: 'Built an AI <b>website-build skill</b> for Simplotel hotel sites — from just a hotel\'s MoM, a single skill builds the complete website, with everything it needs, in a single day.' },
+    { icon: 'migrate', html: 'Built a <b>CMS-to-AI migration skill</b> that rebuilds existing Simplotel CMS websites as AI-built websites.' },
+    { icon: 'gauge', html: 'Built a <b>PageSpeed optimization skill</b> that improves the page speed and Core Web Vitals of any website.' },
+    { icon: 'shield', html: 'Built an <b>ADA accessibility skill</b> that automates ADA/WCAG testing and fixes for websites.' },
     { icon: 'bolt', html: 'Designed &amp; built an internal <b>Popup Generator</b>, cutting deployment time from 1+ hour to under 10 minutes.' },
     { icon: 'plug', html: 'Built a <b>Chrome Extension</b> for developers to save &amp; manage CSS snippets during debugging, preventing lost work on refresh.' },
     { icon: 'menu', html: 'Resolved recurring <b>Mega Menu</b> navigation issues at the product level, improving stability across multiple websites.' },
-    { icon: 'shield', html: 'Led <b>ADA accessibility</b> compliance initiatives and fixed heading hierarchy issues, improving accessibility and SEO sitewide.' },
+    { icon: 'check', html: 'Performed <b>ADA testing</b> and remediation for <b>all US websites</b> at Simplotel, fixing heading hierarchy and semantic structure to improve accessibility and SEO.' },
     { icon: 'people', html: 'Mentor for <b>5 developers</b> — technical guidance, code reviews, troubleshooting and career support.' },
     { icon: 'pen', html: 'Owned <b>UI/UX design</b> — wireframing, visual design and prototyping in Figma — across multiple client projects.' }
   ];
@@ -82,6 +86,9 @@
     shield: '<path d="M8 1.2l5.5 2v4.3c0 3.6-2.3 5.9-5.5 6.3-3.2-.4-5.5-2.7-5.5-6.3V3.2l5.5-2z" stroke="currentColor" stroke-width="1.1" fill="none"/>',
     people: '<circle cx="5.5" cy="5.5" r="2" stroke="currentColor" stroke-width="1.1"/><circle cx="11" cy="6" r="1.6" stroke="currentColor" stroke-width="1.1"/><path d="M1.5 14c0-2.3 1.8-4 4-4s4 1.7 4 4M9.8 10.3c1.6.2 2.7 1.6 2.7 3.4" stroke="currentColor" stroke-width="1.1" fill="none"/>',
     pen: '<path d="M2 14l1-4 8-8 3 3-8 8-4 1z" stroke="currentColor" stroke-width="1.1" fill="none"/>',
+    sparkle: '<path d="M8 1.5l1.6 4.9L14.5 8l-4.9 1.6L8 14.5l-1.6-4.9L1.5 8l4.9-1.6L8 1.5z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round" fill="none"/>',
+    migrate: '<rect x="1.5" y="3" width="5" height="10" rx="1" stroke="currentColor" stroke-width="1.1" fill="none"/><rect x="9.5" y="3" width="5" height="10" rx="1" stroke="currentColor" stroke-width="1.1" fill="none"/><path d="M5 8h6M9.5 6l1.8 2-1.8 2" stroke="currentColor" stroke-width="1.1" fill="none"/>',
+    gauge: '<path d="M2 11.5a6 6 0 1112 0" stroke="currentColor" stroke-width="1.1" fill="none"/><path d="M8 11.5l3-4" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="11.5" r="1" fill="currentColor"/>',
     diamond: '<path d="M7 1l6 6-6 6-6-6 6-6z" fill="currentColor"/>',
     copy: '<rect x="5" y="5" width="7" height="8" rx="1" stroke="currentColor" stroke-width="1.1" fill="none"/><path d="M3.5 10.5V3.5a1 1 0 011-1H10" stroke="currentColor" stroke-width="1.1" fill="none"/>',
     check: '<path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.4" fill="none"/>',
